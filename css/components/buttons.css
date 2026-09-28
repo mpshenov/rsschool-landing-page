@@ -1,0 +1,74 @@
+.menu-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--text-inverse);
+  border-radius: 100px;
+ 
+  width: 200px;
+  height: 64px;
+}
+ 
+.app-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+ 
+.app-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid black;
+  border-radius: 100px;
+  
+
+  min-width: 200px;
+  min-height: 64px;
+  padding: 12px 20px;
+  gap: 8px;
+}
+ 
+.apple-link,
+.google-play-link {
+  border: 1px solid var(--border-primary);
+ 
+  width: 200px;
+  height: 64px;
+  border-radius: 100px;
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+ 
+@media (max-width: 768px) {
+  .menu-button {
+    width: 168px;
+    height: 56px;
+  }
+}
+ 
+@media (max-width: 650px) {
+  .menu-button {
+    width: 100%;
+    max-width: 220px;
+  }
+ 
+  .app-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 200px;
+    height: 64px;
+  }
+ 
+  .apple-link,
+  .google-play-link {
+    width: 100%;
+  }
+}

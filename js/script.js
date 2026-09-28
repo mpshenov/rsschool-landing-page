@@ -3,22 +3,46 @@ let index = 0;
 const trackElement = document.querySelector('[data-js-slider-track]');
 const nextBtnElement = document.querySelector('[data-js-next-btn]');
 const prevBtnElement = document.querySelector('[data-js-prev-btn]');
+const sliderWindowElement = document.querySelector('[data-js-slider-window]');
+const dotElements = document.querySelectorAll('[data-js-dot]');
+
+let totalSlides;
+if(trackElement) {
+  totalSlides = trackElement.children.length;
+} else {
+  totalSlides = 0;
+}
+
+function updateDots() {
+  dotElements.forEach(element => { element.classList.remove('active'); }); // Исправлена скобка )
+  if (dotElements[index]) {
+    dotElements[index].classList.add('active');
+  }
+}
+
 
 if (trackElement && nextBtnElement && prevBtnElement) {
 nextBtnElement.onclick = function() {
-  if (index < 2) {
-    index = index + 1;
-    trackElement.style.transform = `translateX(-${index * 1440}px)`;
+  if (index < totalSlides - 1) {
+      index = index + 1;
+  } else {
+      index = 0; 
   }
+    updateDots();
+    trackElement.style.transform = `translateX(-${index * sliderWindowElement.clientWidth}px)`;
 };
 
 prevBtnElement.onclick = function() {
   if (index > 0) {
-    index = index - 1;
-    trackElement.style.transform = `translateX(-${index * 1440}px)`;
+      index = index - 1;
+  } else {
+      index = totalSlides - 1; 
+  }
+    updateDots();
+    trackElement.style.transform = `translateX(-${index * sliderWindowElement.clientWidth}px)`;
   }
 };
-}
+
 
 // toggleBtn
 const themeToggleElement = document.querySelector('[data-js-theme-toggle]');
@@ -55,30 +79,34 @@ themeToggleElement.addEventListener('click', () => {
 });
 
 
-// coffee tea dessert btns
-const coffeeBtnElement = document.querySelector('[data-js-coffee-btn]');
-const teaBtnElement = document.querySelector('[data-js-tea-btn]');
-const dessertBtnElement = document.querySelector('[data-js-dessert-btn]');
+//burger btn
+const burgerBtnElement = document.querySelector('[data-js-burger-btn]');
+const headerNavElement = document.querySelector('[data-js-header-nav]');
+const navListElement = document.querySelector('.nav-list'); 
+const navLinksElement = document.querySelectorAll('.nav-link');
 
-const coffeeContentElement = document.querySelector('[data-js-coffee-content]');
-const teaContentElement = document.querySelector('[data-js-tea-content]');
-const dessertContentElement = document.querySelector('[data-js-desserts-content]');
+if (burgerBtnElement && headerNavElement && navListElement) {
 
-if (coffeeBtnElement && teaBtnElement && dessertBtnElement && coffeeContentElement && teaContentElement && dessertContentElement) {
-    const switchTab = (activeBtn, activeContent) => {
+    function toggleMenu() {
+        headerNavElement.classList.toggle('open');
+        navListElement.classList.toggle('open');
+        
+        if (headerNavElement.classList.contains('open')) {
+            burgerBtnElement.textContent = '✕';
+        } else {
+            burgerBtnElement.textContent = '☰';
+        }
+    }
 
-    coffeeBtnElement.classList.remove('active');
-    teaBtnElement.classList.remove('active');
-    dessertBtnElement.classList.remove('active');
+    burgerBtnElement.onclick = toggleMenu;
 
-    coffeeContentElement.classList.remove('active');
-    teaContentElement.classList.remove('active');
-    dessertContentElement.classList.remove('active');
-
-    activeBtn.classList.add('active');
-    activeContent.classList.add('active');
-    };
-  coffeeBtnElement.addEventListener('click', () => switchTab(coffeeBtnElement, coffeeContentElement));
-  teaBtnElement.addEventListener('click', () => switchTab(teaBtnElement, teaContentElement));
-  dessertBtnElement.addEventListener('click', () => switchTab(dessertBtnElement, dessertContentElement));
+    navLinksElement.forEach(link => {
+        link.onclick = function() {
+            if (headerNavElement.classList.contains('open')) {
+                toggleMenu();
+            }
+        };
+    });
 }
+
+

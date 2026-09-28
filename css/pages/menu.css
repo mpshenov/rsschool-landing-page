@@ -1,0 +1,228 @@
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+ 
+  padding: 40px 0;
+  gap: 40px;
+  width: 100%;
+}
+ 
+.menu-header {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+ 
+.menu-section {
+  max-width: 1360px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.menu-products {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 40px;
+}
+ 
+.products-grid {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(4, 310px);
+  gap: 20px;
+}
+
+.show-more-btn {
+  display: none;
+  width: 60px;
+  height: 60px;
+
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid black;
+  border-radius: 100px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); 
+  display: none; 
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; 
+}
+
+.modal-window {
+  min-width: 768px;
+  min-height: 472px;
+  background-color: var(--bg-page);
+  border-radius: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.options-group {
+  display: flex;
+  gap: 8px;
+}
+
+.modal-content {
+  display: flex;
+}
+
+.modal-info {
+  width: 458px;
+  height: 472px;
+
+  padding-left: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal-hgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-options-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-total {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.modal-close-btn {
+  width: 438px;
+  height: 44px;
+  border: 1px solid var(--border-inverse);
+
+  border-radius: 100px;
+  padding: 10px 78px;
+}
+
+.modal-image-wrapper {
+  width: 310px;
+  height: 310px;
+}
+ 
+@media (max-width: 1439px) {
+  .products-grid.active {
+    grid-template-columns: repeat(3, 310px);
+  }
+}
+ 
+@media (max-width: 1000px) {
+  .products-grid.active {
+    grid-template-columns: repeat(2, 310px);
+  }
+
+  .modal-window {
+    width: 688px;
+    padding: 16px;
+    min-width: 0px;
+  }
+}
+ 
+@media (max-width: 768px) {
+  .card-5,
+  .card-6,
+  .card-7,
+  .card-8,
+  .card-17,
+  .card-18,
+  .card-19,
+  .card-20 {
+    display: none;
+  }
+ 
+  .menu-section {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+ 
+  .products-grid.active {
+    grid-template-columns: repeat(2, 310px);
+    justify-content: center;
+    gap: 16px;
+  }
+}
+ 
+@media (max-width: 768px) {
+  .products-grid.active {
+    grid-template-columns: repeat(1, 310px);
+  }
+}
+ 
+@media (max-width: 650px) {
+  .products-grid.active {
+    grid-template-columns: 310px;
+    justify-content: center;
+  }
+
+  .modal-window {
+    width: 100%;
+    max-width: 342px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .modal-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal-image-wrapper {
+    display: none;
+  }
+
+  .modal-info {
+    width: 100%;
+    padding-left: 0;
+  }
+  
+  .options-group {
+    flex-wrap: wrap;
+  }
+
+  .modal-close-btn {
+    width: 310px;
+    height: 44px;
+  }
+}
+
+.dark-mode .modal-window {
+  background-color: var(--bg-overlay);
+  color: var(--text-inverse);
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
